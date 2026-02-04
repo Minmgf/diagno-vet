@@ -1,21 +1,20 @@
 "use client"
 
-import { ClipboardList, Plus, ChevronDown, Settings, LogOut, ChevronRight, User, Building2 } from "lucide-react"
+import { useState } from "react"
+import { ClipboardList, Plus, ChevronDown, Settings, LogOut, User, Building2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuSubContent,
-  DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import Image from "next/image"
 
 export function Navbar() {
+  const [configOpen, setConfigOpen] = useState(false)
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center justify-between px-4">
@@ -93,32 +92,37 @@ export function Navbar() {
 
               {/* Menu Items */}
               <div className="py-2 border-t">
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger className="flex items-center justify-between px-4 py-2.5 text-sm text-sky-500 hover:bg-muted cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <Settings className="h-4 w-4" />
-                      <span>Configuracion</span>
-                    </div>
-                  </DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent className="rounded-xl shadow-lg border p-2 min-w-35">
-                      <Link
-                        href="/profile"
-                        className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground hover:bg-muted rounded-md transition-colors"
-                      >
-                        <User className="h-4 w-4" />
-                        <span>Personal</span>
-                      </Link>
-                      <Link
-                        href="/veterinary"
-                        className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground hover:bg-muted rounded-md transition-colors"
-                      >
-                        <Building2 className="h-4 w-4" />
-                        <span>Veterinaria</span>
-                      </Link>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
+                {/* Configuracion with collapsible submenu */}
+                <button
+                  onClick={() => setConfigOpen(!configOpen)}
+                  className="flex items-center justify-between w-full px-4 py-2.5 text-sm text-sky-500 hover:bg-muted transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Settings className="h-4 w-4" />
+                    <span>Configuracion</span>
+                  </div>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${configOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {/* Submenu items - expands below */}
+                {configOpen && (
+                  <div className="pl-4 pb-2">
+                    <Link
+                      href="/profile"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground hover:bg-muted rounded-md transition-colors"
+                    >
+                      <User className="h-4 w-4" />
+                      <span>Personal</span>
+                    </Link>
+                    <Link
+                      href="/veterinary"
+                      className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground hover:bg-muted rounded-md transition-colors"
+                    >
+                      <Building2 className="h-4 w-4" />
+                      <span>Veterinaria</span>
+                    </Link>
+                  </div>
+                )}
 
                 <button
                   className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-muted-foreground hover:bg-muted transition-colors"
