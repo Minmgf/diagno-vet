@@ -54,7 +54,7 @@ export default function VeterinarySettingsPage() {
                 onCancel={handleCancel}
             />
 
-            <main className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
+            <main className="mx-auto max-w-6xl px-4 py-4 sm:py-6">
                 <Tabs defaultValue="general" className="space-y-4 sm:space-y-6">
                     <TabsList className="grid w-full grid-cols-2 sm:w-auto sm:max-w-md">
                         <TabsTrigger value="general" className="text-xs sm:text-sm">

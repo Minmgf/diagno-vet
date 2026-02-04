@@ -5,7 +5,9 @@ import { ProfileContent } from "./profile-content"
 
 export default function ProfilePage() {
   return (
-    <div className="container mx-auto px-4 py-6 max-w-6xl">
+    <div className="bg-muted/30 min-h-screen">
+
+    <div className="container mx-auto px-4 py-6 max-w-6xl ">
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold tracking-tight">Mi Perfil</h1>
@@ -22,6 +24,7 @@ export default function ProfilePage() {
         {/* Content - Fills remaining space */}
         <ProfileContent />
       </div>
+    </div>
     </div>
   )
 }

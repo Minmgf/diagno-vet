@@ -11,8 +11,8 @@ interface VeterinaryHeaderProps {
 
 export function VeterinaryHeader({ hasChanges, onSave, onCancel }: VeterinaryHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 pt-5">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+    <header className="pt-4 sm:pt-6">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
             <Building2 className="h-4 w-4 text-primary-foreground" />
